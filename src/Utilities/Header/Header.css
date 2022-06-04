@@ -2,5 +2,9 @@
 
 .title {
     font-family: 'Satisfy', cursive;
-    color: rgb(13, 255, 5) !important;
+    color: rgb(11, 247, 255) !important;
+}
+
+.title:hover {
+    color: rgb(136, 217, 255) !important;
 }
