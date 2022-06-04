@@ -8,7 +8,6 @@ import Footer from './Utilities/Footer/Footer';
 import Header from './Utilities/Header/Header';
 
 function App() {
-  console.log(process.env.REACT_APP_apiKey);
   return (
     <div className="App relative">
       <Header />

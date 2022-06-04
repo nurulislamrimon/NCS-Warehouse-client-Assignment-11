@@ -8,3 +8,8 @@
 .title:hover {
     color: rgb(136, 217, 255) !important;
 }
+
+.navbar-expand-lg .navbar-collapse.show {
+    height: 100vh;
+    transition: all 1s;
+}

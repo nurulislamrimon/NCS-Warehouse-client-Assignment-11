@@ -1,48 +1,31 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
+import useBannerData from '../../CustomHooks/useBannerData';
 import Title from '../../Utilities/Title/Title';
 
 const Home = () => {
+    const { banners, setBanners } = useBannerData();
+    console.log(banners);
     return (
         <div>
             <Title title='Home' />
             {/* banner */}
+
             <Carousel>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="holder.js/800x400?text=First"
-                        alt="First slide"
-                    />
-                    <Carousel.Caption>
-                        <h3>First slide label</h3>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="holder.js/800x400?text=Second"
-                        alt="Second slide"
-                    />
+                {banners.map(banner =>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100" style={{ height: "90vh" }}
+                            src={banner?.picture}
+                            alt={banner?.name}
+                        />
+                        <Carousel.Caption>
+                            <h2 className='text-3xl'>{banner.name}</h2>
+                            <p>{banner.description}</p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
+                )}
 
-                    <Carousel.Caption>
-                        <h3>Second slide label</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                        className="d-block w-100"
-                        src="holder.js/800x400?text=Third"
-                        alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                        <h3>Third slide label</h3>
-                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                    </Carousel.Caption>
-                </Carousel.Item>
             </Carousel>
         </div>
     );
