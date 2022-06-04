@@ -21,7 +21,7 @@ const Home = () => {
                         />
                         <Carousel.Caption>
                             <h2 className='text-3xl'>{banner.name}</h2>
-                            <p>{banner.description}</p>
+                            <p>{banner.description.length > 20 ? banner.description.slice(0, 200) : banner.description}</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 )}
