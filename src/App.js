@@ -8,6 +8,10 @@ import NotFound from './Pages/NotFound/NotFound';
 import UpdateInventory from './Pages/UpdateInventory/UpdateInventory';
 import Footer from './Utilities/Footer/Footer';
 import Header from './Utilities/Header/Header';
+import 'material-icons/iconfont/material-icons.css';
+import UpdateProductQuantity from './Pages/UpdateProductQuantity/UpdateProductQuantity';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
@@ -19,7 +23,7 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/inventory' element={<Inventory />} />
-        <Route path='/inventory/:id' element={<UpdateInventory />} />
+        <Route path='/inventory/:id' element={<UpdateProductQuantity />} />
         <Route path='/login' element={<Login />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>

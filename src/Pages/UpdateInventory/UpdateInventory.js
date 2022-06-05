@@ -1,11 +1,11 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
-import useUpdatInventory from '../../CustomHooks/useUpdatInventory';
+import useGetProduct from '../../CustomHooks/useGetProduct';
 
 const UpdateInventory = () => {
     const { id } = useParams();
-    const { inventory, setInventory } = useUpdatInventory(id);
+    const { inventory, setInventory } = useGetProduct(id);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -50,11 +50,16 @@ const UpdateInventory = () => {
             const newDescription = e.target.value;
             setInventory({ description: newDescription, ...rest })
         }
+        if (e.target.name === 'sold') {
+            const { sold, ...rest } = inventory;
+            const newSold = e.target.value;
+            setInventory({ sold: newSold, ...rest })
+        }
     }
     return (
         <div className='mb-3'>
             <Form className='md:w-1/2 mx-auto px-2' onSubmit={handleFormSubmit} onChange={handleFormChange}>
-                <h1 className='text-4xl text-center'>Update the product</h1>
+                <h1 className='text-4xl text-center'>Update the Inventory</h1>
 
                 <Form.Group className="mb-3" controlId="formBasic">
                     <Form.Label>Product name:</Form.Label>
@@ -86,7 +91,12 @@ const UpdateInventory = () => {
                     <Form.Control type="text" as="textarea" name='description' value={inventory.description} />
                 </Form.Group>
 
-                <Button variant='dark' type="submit" className='bg-teal-800'>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Sold:</Form.Label>
+                    <Form.Control type="text" name='sold' value={inventory.sold} />
+                </Form.Group>
+
+                <Button type="submit" className='bg-teal-800'>
                     Submit
                 </Button>
             </Form>

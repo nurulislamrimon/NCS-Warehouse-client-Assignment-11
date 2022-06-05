@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const useUpdatInventory = (id) => {
+const useGetProduct = (id) => {
     const [inventory, setInventory] = useState({});
     useEffect(() => {
         fetch(`http://localhost:5000/inventory/${id}`)
@@ -10,4 +10,4 @@ const useUpdatInventory = (id) => {
     return { inventory, setInventory }
 };
 
-export default useUpdatInventory;
+export default useGetProduct;

@@ -1,11 +1,11 @@
 .inventory {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    grid-gap: 5px;
+    grid-gap: 30px;
 }
 
-.upcoming {
+/* .upcoming {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+    grid-template-columns: 1fr 1fr;
     grid-gap: 5px;
-}
+} */

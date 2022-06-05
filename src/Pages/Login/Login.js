@@ -16,7 +16,7 @@ const Login = () => {
     }
     user && navigate('/')
     return (
-        <Form className='md:w-1/2 mx-auto px-2' onSubmit={handleFormSubmit}>
+        <Form className='md:w-1/2 mx-auto px-2 my-5' onSubmit={handleFormSubmit}>
             <h1 className='text-4xl text-center'>Log in</h1>
             <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
