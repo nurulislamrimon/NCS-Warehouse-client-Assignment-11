@@ -12,6 +12,7 @@ import 'material-icons/iconfont/material-icons.css';
 import UpdateProductQuantity from './Pages/UpdateProductQuantity/UpdateProductQuantity';
 import 'react-toastify/dist/ReactToastify.css';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
+import AddProduct from './Pages/AddProduct/AddProduct';
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
         <Route path='/home' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
         <Route path='/inventory' element={<Inventory />} />
+        <Route path='/add' element={<AddProduct />} />
         <Route path='/manage' element={<ManageInventory />} />
+        <Route path='/update/:id' element={<UpdateInventory />} />
         <Route path='/inventory/:id' element={<UpdateProductQuantity />} />
         <Route path='/login' element={<Login />} />
         <Route path='/*' element={<NotFound />} />

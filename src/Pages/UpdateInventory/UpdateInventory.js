@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useGetProduct from '../../CustomHooks/useGetProduct';
 
 const UpdateInventory = () => {
@@ -16,7 +17,7 @@ const UpdateInventory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) { alert('Update completed') }
+                if (data.modifiedCount) { toast('Update completed') }
             })
     }
     const handleFormChange = (e) => {
@@ -77,6 +78,11 @@ const UpdateInventory = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
+                    <Form.Label>Sold item:</Form.Label>
+                    <Form.Control type="text" name='sold' value={inventory.sold} />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Supplier:</Form.Label>
                     <Form.Control type="text" name='supplier' value={inventory.supplier} />
                 </Form.Group>
@@ -89,11 +95,6 @@ const UpdateInventory = () => {
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Products Details:</Form.Label>
                     <Form.Control type="text" as="textarea" name='description' value={inventory.description} />
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                    <Form.Label>Sold:</Form.Label>
-                    <Form.Control type="text" name='sold' value={inventory.sold} />
                 </Form.Group>
 
                 <Button type="submit" className='bg-teal-800'>

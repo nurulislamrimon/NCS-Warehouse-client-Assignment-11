@@ -1,12 +1,14 @@
 import React from 'react';
 import { Table } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useInventory from '../../CustomHooks/useInventory';
 import './ManageInventory.css';
 
 const ManageInventory = () => {
     const { inventories, setinventories } = useInventory(true, 1);
+    const navigate = useNavigate();
+
     const handleDeleteProduct = (id) => {
         fetch(`http://localhost:5000/manage/${id}`, {
             method: 'DELETE'
@@ -46,9 +48,17 @@ const ManageInventory = () => {
                             <td className='text-sm md:text-xl'>{inventory?.price}<span className='text-3xl'>৳</span></td>
                             <td className='text-sm md:text-xl'>{inventory.quantity}</td>
                             <td colSpan={2} className='text-sm flex justify-between md:px-4 md:text-xl'><p className='white'>{inventory?.supplier}</p>
-                                <button onClick={() => handleDeleteProduct(inventory._id)}>
-                                    <span className='material-icons text-red-900 cursor-pointer border-2 p-2 rounded-circle hover:bg-gray-300'>delete</span>
-                                </button>
+
+
+                                <div className='flex'>
+                                    <img src={inventory.picture} alt="" width='100' className='me-5 hidden md:block object-cover h-14' />
+                                    <button onClick={() => navigate(`/update/${inventory?._id}`)}><span className='material-icons text-teal-800 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>edit</span></button>
+
+                                    <button onClick={() => handleDeleteProduct(inventory._id)}>
+                                        <span className='material-icons text-red-900 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>delete</span>
+                                    </button>
+                                </div>
+
                             </td>
                         </tr>)}
                 </tbody>
