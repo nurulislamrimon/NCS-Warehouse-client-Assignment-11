@@ -9,12 +9,8 @@ import ReactReadMoreReadLess from 'react-read-more-read-less';
 import TopSoldProducts from '../../Utilities/TopSoldProducts/TopSoldProducts';
 
 const Home = () => {
-    const [isExpanded, setIsExpanded] = useState(false);
     const { banners, setBanners } = useBannerData();
     const { inventories, setinventories } = useInventory(6, 1);
-    const handleExpanded = (e) => {
-        setIsExpanded(!isExpanded);
-    }
     return (
         <div>
             <Title title='Home' />
@@ -42,7 +38,7 @@ const Home = () => {
             {/* inventory section */}
             <div className='relative my-4'>
                 <h1 className=' underline text-2xl font-bold md:text-4xl text-center'>Inventory</h1>
-                <Link to='/manage' className='absolute right-4 bottom-0 flex text-sm fw-bold text-teal-800'>Manage Inventories <span className='material-icons'>arrow_forward</span></Link>
+                <Link to='/manage' className='absolute right-4 bottom-0 flex text-sm fw-bold text-teal-800'>Manage Inventory <span className='material-icons'>arrow_forward</span></Link>
             </div>
             <section className="inventory p-3">
                 {inventories.map(inventory =>
@@ -85,7 +81,7 @@ const Home = () => {
                 }
             </section >
 
-            {/* Most Sold item */}
+            {/* Most Sold items */}
             <h1 className='text-center my-4 underline text-2xl font-bold md:text-4xl'>Top sold products</h1>
             <TopSoldProducts></TopSoldProducts>
 

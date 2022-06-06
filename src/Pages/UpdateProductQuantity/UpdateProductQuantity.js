@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import useGetProduct from '../../CustomHooks/useGetProduct';
 
 const UpdateProductQuantity = () => {
     const { id } = useParams();
     const { inventory, setInventory } = useGetProduct(id);
-
-
-
-
 
     const handleDeliveredItemChange = () => {
         const { quantity, sold, ...rest } = inventory;
@@ -51,7 +47,7 @@ const UpdateProductQuantity = () => {
 
     }
     return (
-        <div className='mb-2 w-3/4 md:w-2/4 mx-auto'>
+        <section className='mb-2 w-3/4 md:w-2/4 mx-auto'>
             <h1 className='text-2xl md:text-2xl text-center underline'>Update the product</h1>
             <h2 className='text-center text-lg md:text-2xl my-2 fw-bold text-teal-800'>{inventory.name}</h2>
             <div className="grid md:grid-cols-2 align-items-center">
@@ -64,7 +60,7 @@ const UpdateProductQuantity = () => {
                     <h3 className='md:text-lg'>Item Already Sold: <b>{inventory.sold}pcs</b></h3>
                 </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-2 align-items-center">
+            <div className="grid md:grid-cols-2 gap-2 align-items-center my-3">
                 <Form onSubmit={handleProductInsertion} >
                     <Form.Group className="my-3" controlId="quantity">
                         <Form.Label>Enter quatity to add:</Form.Label>
@@ -79,8 +75,8 @@ const UpdateProductQuantity = () => {
                     </span></Button>
                 </div>
             </div>
-
-        </div >
+            <Link to='/manage' className='flex text-sm fw-bold text-teal-800 w-100 justify-center'>Manage Inventory <span className='material-icons'>arrow_forward</span></Link>
+        </section >
     );
 };
 

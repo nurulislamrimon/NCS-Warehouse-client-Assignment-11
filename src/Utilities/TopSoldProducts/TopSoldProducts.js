@@ -11,7 +11,7 @@ const TopSoldProducts = () => {
                 <Card key={topSoldProduct._id}>
                     <Card.Img variant="top" src={topSoldProduct?.picture} className='object-cover h-52' />
                     <Card.Body>
-                        <p className='text-lg md:text-2xl capitalize'>Product: <span className='fw-bold'>{topSoldProduct?.name}</span></p>
+                        <p className='text-lg md:text-lgcapitalize'>Product: <span className='fw-bold'>{topSoldProduct?.name}</span></p>
                         <p>Price: <b>{topSoldProduct?.price} <span className='text-2xl'>৳</span></b></p>
 
                         <p>Sold items: <b>{topSoldProduct?.sold} pcs</b></p>

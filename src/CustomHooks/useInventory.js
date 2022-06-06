@@ -6,7 +6,7 @@ const useInventory = (limit, sort) => {
         fetch(`http://localhost:5000/inventory?limit=${limit}&sort=${sort}`)
             .then(res => res.json())
             .then(data => setinventories(data))
-    }, [])
+    }, [limit, sort])
     return { inventories, setinventories }
 };
 

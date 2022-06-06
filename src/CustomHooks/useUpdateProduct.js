@@ -1,4 +1,4 @@
-import { data } from 'autoprefixer';
+/* import { data } from 'autoprefixer';
 import React, { useState } from 'react';
 
 const useUpdateProduct = () => {
@@ -11,11 +11,10 @@ const useUpdateProduct = () => {
         })
             .then(res => res.json())
             .then(data => setUpdateInfo(data))
-        return data;
     }
 
     return { updateInfo, setUpdateInfo, handleUpdateProduct }
 }
 
 
-export default useUpdateProduct;
+export default useUpdateProduct; */
