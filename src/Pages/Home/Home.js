@@ -46,7 +46,7 @@ const Home = () => {
             </div>
             <section className="inventory p-3">
                 {inventories.map(inventory =>
-                    <Card key={inventory._id}>
+                    <Card key={inventory?._id}>
                         <Card.Img variant="top" src={inventory?.picture} className='object-cover h-52' />
                         <Card.Body>
                             <p className=' text-lg md:text-2xl capitalize'>Product: <span className='fw-bold'>{inventory?.name}</span></p>
@@ -55,9 +55,9 @@ const Home = () => {
                             <p>Sold: <b>{inventory?.sold} pcs</b></p>
                             <em>Supplier: {inventory?.supplier?.toUpperCase()}</em>
                             <Card.Text>
-                                <u>Description</u>: {inventory?.description.length > 80 ? inventory.description.slice(0, 80).concat('...') : inventory.description}
+                                <u>Description</u>: {inventory?.description?.length > 80 ? inventory.description.slice(0, 80).concat('...') : inventory?.description}
                             </Card.Text>
-                            <Link to={`/inventory/${inventory._id}`} className='btn bg-teal-800 text-white hover:bg-teal-700 mt-2'>Update this item</Link>
+                            <Link to={`/inventory/${inventory?._id}`} className='btn bg-teal-800 text-white hover:bg-teal-700 mt-2'>Update this item</Link>
                         </Card.Body>
                     </Card>)}
             </section>
