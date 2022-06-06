@@ -13,6 +13,7 @@ import UpdateProductQuantity from './Pages/UpdateProductQuantity/UpdateProductQu
 import 'react-toastify/dist/ReactToastify.css';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
 import AddProduct from './Pages/AddProduct/AddProduct';
+import Signup from './Pages/Signup/Signup';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/update/:id' element={<UpdateInventory />} />
         <Route path='/inventory/:id' element={<UpdateProductQuantity />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 

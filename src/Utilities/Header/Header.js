@@ -18,6 +18,10 @@ const Header = () => {
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ms-auto d-flex align-items-center'>
 
+                            <CustomLink to='/home' className='my-2 mx-3 d-block'>
+                                Home
+                            </CustomLink>
+
                             <CustomLink to='/blogs' className='my-2 mx-3 d-block'>
                                 Blogs
                             </CustomLink>
@@ -25,9 +29,14 @@ const Header = () => {
                                 <button onClick={() => signOut(auth)} className='my-2 mx-3 d-block text-white'>
                                     Log out
                                 </button> :
-                                <CustomLink to='/login' className='my-2 mx-3 d-block'>
-                                    Login
-                                </CustomLink>}
+                                <>
+                                    <CustomLink to='/login' className='my-2 mx-3 d-block'>
+                                        Login
+                                    </CustomLink>
+                                    <CustomLink to='/signup' className='my-2 mx-3 d-block'>
+                                        Signup
+                                    </CustomLink>
+                                </>}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

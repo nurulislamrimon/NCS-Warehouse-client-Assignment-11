@@ -56,6 +56,7 @@ const UpdateInventory = () => {
             const newSold = e.target.value;
             setInventory({ sold: newSold, ...rest })
         }
+
     }
     return (
         <div className='mb-3'>
