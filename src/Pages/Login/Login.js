@@ -1,7 +1,7 @@
 import { async } from '@firebase/util';
 import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init'
@@ -12,7 +12,7 @@ const Login = () => {
     const resetEmail = useRef('');
     const [signInWithEmailAndPassword, user, loading] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
-    console.log(resetEmail);
+    const [signInWithFacebook, fbuser, fbloading, fberror] = useSignInWithFacebook(auth);
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -21,9 +21,10 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)
-    user && navigate('/')
+    user || fbuser && navigate('/')
     return (
         <section className='md:w-1/2 mx-auto px-2 my-5'>
+            <button onClick={() => signInWithFacebook()} className='btn bg-blue-600 text-white'>Login with Facebook</button>
             <Form onSubmit={handleFormSubmit}>
                 <h1 className='text-4xl text-center'>Log in</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
