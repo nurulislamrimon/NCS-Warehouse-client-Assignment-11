@@ -17,6 +17,10 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className='ms-auto d-flex align-items-center'>
+                            {user?.uid &&
+                                (user?.photoURL ?
+                                    <img src={user?.photoURL} alt='user' width={40} height={40} className='rounded-circle border-blue-900 border border-2' /> :
+                                    <p className='rounded-circle border-blue-900 border border-2 h-10 w-10 text-center text-white pt-1'>{user?.displayName}</p>)}
 
                             <CustomLink to='/home' className='my-2 mx-3 d-block'>
                                 Home

@@ -15,6 +15,7 @@ import ManageInventory from './Pages/ManageInventory/ManageInventory';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import Signup from './Pages/Signup/Signup';
 import EmailVerification from './Pages/EmailVerification/EmailVerification';
+import RequireAuth from './Utilities/RequireAuth/RequireAuth';
 
 
 function App() {
@@ -26,14 +27,36 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
-        <Route path='/inventory' element={<Inventory />} />
-        <Route path='/add' element={<AddProduct />} />
-        <Route path='/manage' element={<ManageInventory />} />
-        <Route path='/update/:id' element={<UpdateInventory />} />
-        <Route path='/inventory/:id' element={<UpdateProductQuantity />} />
+        <Route path='/inventory' element={
+          <RequireAuth>
+            <Inventory />
+          </RequireAuth>
+        } />
+        <Route path='/add' element={
+          <RequireAuth>
+            <AddProduct />
+          </RequireAuth>
+        } />
+        <Route path='/manage' element={
+          <RequireAuth>
+            <ManageInventory />
+          </RequireAuth>
+        } />
+        <Route path='/update/:id' element={
+          <RequireAuth>
+            <UpdateInventory />
+          </RequireAuth>
+        } />
+        <Route path='/inventory/:id' element={
+          <RequireAuth>
+            <UpdateProductQuantity />
+          </RequireAuth>
+        } />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
-        <Route path='/verifyemail' element={<EmailVerification />} />
+        <Route path='/verifyemail' element={
+          <EmailVerification />
+        } />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 

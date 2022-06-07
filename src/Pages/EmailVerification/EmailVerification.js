@@ -1,11 +1,13 @@
 import React from 'react';
 import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
 const EmailVerification = () => {
     const [user] = useAuthState(auth);
     const [sendEmailVerification, sending] = useSendEmailVerification(auth);
+    const navigate = useNavigate();
 
     const handleEmailVerification = async () => {
         await sendEmailVerification(user?.email)
@@ -13,6 +15,10 @@ const EmailVerification = () => {
     if (sending) {
         toast(`Verification mail sended to ${user?.email}`)
     }
+    // if log out
+    !user?.uid && navigate('/login')
+    // if email varification done
+    user?.emailVerified && navigate('/')
     return (
         <div className='text-center my-5'>
             <h1 className='text-4xl'>Your email is not verified</h1>

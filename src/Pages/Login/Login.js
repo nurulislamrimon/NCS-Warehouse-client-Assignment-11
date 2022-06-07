@@ -2,17 +2,19 @@ import { async } from '@firebase/util';
 import React, { useRef, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init'
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     const [check, setCheck] = useState(false);
     const resetEmail = useRef('');
     const [signInWithEmailAndPassword, user, loading] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
     const [signInWithFacebook, fbuser, fbloading, fberror] = useSignInWithFacebook(auth);
+    const from = location?.state?.from?.path || '/'
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
@@ -21,12 +23,20 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)
-    user || fbuser && navigate('/')
+    if (user || fbuser) { navigate(from) }
     return (
         <section className='md:w-1/2 mx-auto px-2 my-5'>
-            <button onClick={() => signInWithFacebook()} className='btn bg-blue-600 text-white'>Login with Facebook</button>
+            <h1 className='text-4xl text-center my-4 '>Log in</h1>
+
+            <button onClick={() => signInWithFacebook()} className='btn mx-auto bg-blue-600 text-white flex'> <span className='material-icons me-2'>facebook</span>Login with Facebook</button>
+
+            <div className="flex align-items-center">
+                <hr className='w-50 me-2' />
+                <span> or </span>
+                <hr className='w-50 ms-2' />
+            </div>
+
             <Form onSubmit={handleFormSubmit}>
-                <h1 className='text-4xl text-center'>Log in</h1>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control type="email" ref={resetEmail} name='email' placeholder="Enter email" />
