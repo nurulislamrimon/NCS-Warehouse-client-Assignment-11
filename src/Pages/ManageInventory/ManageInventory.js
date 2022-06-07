@@ -10,17 +10,20 @@ const ManageInventory = () => {
     const navigate = useNavigate();
 
     const handleDeleteProduct = (id) => {
-        fetch(`http://localhost:5000/manage/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    toast('The product deleted successfully')
-                    const remainingInventory = inventories.filter(inventory => inventory._id !== id)
-                    setinventories(remainingInventory)
-                }
+        const confirmation = window.confirm('Are you sure want to delete this product?');
+        if (confirmation) {
+            fetch(`http://localhost:5000/manage/${id}`, {
+                method: 'DELETE'
             })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.deletedCount > 0) {
+                        toast('The product deleted successfully')
+                        const remainingInventory = inventories.filter(inventory => inventory._id !== id)
+                        setinventories(remainingInventory)
+                    }
+                })
+        }
 
     }
 

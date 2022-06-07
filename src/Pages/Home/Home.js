@@ -7,10 +7,15 @@ import Title from '../../Utilities/Title/Title';
 import useInventory from '../../CustomHooks/useInventory';
 import ReactReadMoreReadLess from 'react-read-more-read-less';
 import TopSoldProducts from '../../Utilities/TopSoldProducts/TopSoldProducts';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
 
 const Home = () => {
     const { banners, setBanners } = useBannerData();
     const { inventories, setinventories } = useInventory(6, 1);
+
+
+
     return (
         <div>
             <Title title='Home' />

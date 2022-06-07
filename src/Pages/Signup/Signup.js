@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendEmailVerification, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { toast } from 'react-toastify';
 
 const Signup = () => {
     const navigate = useNavigate();
     const [check, setCheck] = useState(false);
     const [createUserWithEmailAndPassword, user, loading] = useCreateUserWithEmailAndPassword(auth);
+    const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
 
-    const handleFormSubmit = (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const newPassword = e.target.newPassword.value;
@@ -19,7 +20,8 @@ const Signup = () => {
             toast("Your both password didn't match")
             return
         }
-        createUserWithEmailAndPassword(email, newPassword);
+        await createUserWithEmailAndPassword(email, newPassword);
+        await sendEmailVerification(email)
     }
     user && navigate('/');
     return (
@@ -44,6 +46,8 @@ const Signup = () => {
             <Button variant='dark' type="submit" className='bg-teal-800' disabled={!check}>
                 Submit
             </Button>
+
+            <p className='text-center md:text-lg'>Are you already a member?<Link to='/login' className='fw-bold text-teal-800 '> Log in</Link></p>
         </Form>
     );
 };

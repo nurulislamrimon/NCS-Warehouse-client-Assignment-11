@@ -17,7 +17,10 @@ const UpdateInventory = () => {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.modifiedCount) { toast('Update completed') }
+                if (data.modifiedCount) {
+                    toast('Update completed')
+                    e.target.reset();
+                }
             })
     }
     const handleFormChange = (e) => {

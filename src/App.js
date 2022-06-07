@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ManageInventory from './Pages/ManageInventory/ManageInventory';
 import AddProduct from './Pages/AddProduct/AddProduct';
 import Signup from './Pages/Signup/Signup';
+import EmailVerification from './Pages/EmailVerification/EmailVerification';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route path='/inventory/:id' element={<UpdateProductQuantity />} />
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/verifyemail' element={<EmailVerification />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 
