@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import Blogs from './Pages/Blogs/Blogs';
 import Home from './Pages/Home/Home';
-import Inventory from './Pages/Inventory/Inventory';
 import Login from './Pages/Login/Login';
 import NotFound from './Pages/NotFound/NotFound';
 import UpdateInventory from './Pages/UpdateInventory/UpdateInventory';
@@ -16,6 +15,7 @@ import AddProduct from './Pages/AddProduct/AddProduct';
 import Signup from './Pages/Signup/Signup';
 import EmailVerification from './Pages/EmailVerification/EmailVerification';
 import RequireAuth from './Utilities/RequireAuth/RequireAuth';
+import MyItems from './Pages/MyItems/MyItems';
 
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
-        <Route path='/inventory' element={
+        <Route path='/myitems' element={
           <RequireAuth>
-            <Inventory />
+            <MyItems />
           </RequireAuth>
         } />
         <Route path='/add' element={

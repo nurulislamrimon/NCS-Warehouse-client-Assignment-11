@@ -14,7 +14,7 @@ const AddProduct = () => {
         const supplier = e.target.supplier.value;
         const picture = e.target.picture.value;
         const description = e.target.description.value;
-        const email = user;
+        const email = user?.email;
         const sold = 0;
         const newProduct = { name, price, quantity, supplier, picture, description, email, sold }
 

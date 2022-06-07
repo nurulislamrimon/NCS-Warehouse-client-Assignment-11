@@ -85,7 +85,7 @@ const Home = () => {
             </section >
 
             {/* Most Sold items */}
-            <h1 className='text-center my-4 underline text-2xl font-bold md:text-4xl'>Top sold products</h1>
+            <h1 className='text-center my-4 underline text-2xl font-bold md:text-4xl'>Top selling</h1>
             <TopSoldProducts></TopSoldProducts>
 
 

@@ -20,7 +20,7 @@ const Header = () => {
                             {user?.uid &&
                                 (user?.photoURL ?
                                     <img src={user?.photoURL} alt='user' width={40} height={40} className='rounded-circle border-blue-900 border border-2' /> :
-                                    <p className='rounded-circle border-blue-900 border border-2 h-10 w-10 text-center text-white pt-1'>{user?.displayName}</p>)}
+                                    <p className='rounded-circle border-blue-900 border border-2 h-10 w-10 text-center text-white pt-1 truncate'>{user?.displayName}</p>)}
 
                             <CustomLink to='/home' className='my-2 mx-3 d-block'>
                                 Home
@@ -29,6 +29,22 @@ const Header = () => {
                             <CustomLink to='/blogs' className='my-2 mx-3 d-block'>
                                 Blogs
                             </CustomLink>
+
+                            {user?.uid &&
+                                <CustomLink to='/manage' className='my-2 mx-3 d-block'>
+                                    Manage items
+                                </CustomLink>}
+
+                            {user?.uid &&
+                                <CustomLink to='/add' className='my-2 mx-3 d-block'>
+                                    Add item
+                                </CustomLink>}
+
+                            {user?.uid &&
+                                <CustomLink to='/myitems' className='my-2 mx-3 d-block'>
+                                    My items
+                                </CustomLink>}
+
                             {user ?
                                 <button onClick={() => signOut(auth)} className='my-2 mx-3 d-block text-white'>
                                     Log out
