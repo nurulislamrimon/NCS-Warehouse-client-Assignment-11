@@ -57,9 +57,11 @@ const ManageInventory = () => {
                                     <img src={inventory.picture} alt="" width='100' className='me-5 hidden md:block object-cover h-14' />
                                     <button onClick={() => navigate(`/update/${inventory?._id}`)}><span className='material-icons text-teal-800 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>edit</span></button>
 
-                                    <button onClick={() => handleDeleteProduct(inventory._id)}>
+                                    {/* this is not used for data protection */}
+
+                                    {/* <button onClick={() => handleDeleteProduct(inventory._id)}>
                                         <span className='material-icons text-red-900 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>delete</span>
-                                    </button>
+                                    </button> */}
                                 </div>
 
                             </td>
