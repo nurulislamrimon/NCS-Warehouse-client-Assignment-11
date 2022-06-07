@@ -16,7 +16,7 @@ const UpdateProductQuantity = () => {
     }
 
     const handleDeliveredItem = () => {
-        fetch(`http://localhost:5000/inventory/${id}`, {
+        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(inventory)
@@ -32,7 +32,7 @@ const UpdateProductQuantity = () => {
         const newQuantity = parseInt(quantity) + parseInt(newAdded);
         const newData = { quantity: newQuantity, ...rest };
 
-        fetch(`http://localhost:5000/inventory/${id}`, {
+        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newData)
@@ -48,7 +48,7 @@ const UpdateProductQuantity = () => {
     }
     return (
         <section className='mb-2 w-3/4 md:w-2/4 mx-auto'>
-            <h1 className='text-2xl md:text-2xl text-center underline'>Update the product</h1>
+            <h1 className='text-2xl md:text-4xl text-center underline'>Update the product</h1>
             <h2 className='text-center text-lg md:text-2xl my-2 fw-bold text-teal-800'>{inventory.name}</h2>
             <div className="grid md:grid-cols-2 align-items-center">
                 <img src={inventory.picture} alt="Product" className='md:order-2' />

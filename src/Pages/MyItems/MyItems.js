@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
 
@@ -11,7 +11,7 @@ const MyItems = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myitems?email=${user?.email}`)
+        fetch(`https://nameless-hamlet-70998.herokuapp.com/myitems?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setinventories(data))
     }, [user])
@@ -19,7 +19,7 @@ const MyItems = () => {
     const handleDeleteProduct = (id) => {
         const confirmation = window.confirm('Are you sure want to delete this product?');
         if (confirmation) {
-            fetch(`http://localhost:5000/manage/${id}`, {
+            fetch(`https://nameless-hamlet-70998.herokuapp.com/manage/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -36,7 +36,7 @@ const MyItems = () => {
 
     return (
         !inventories?.length > 0 ?
-            <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>You have no item to show</h1> :
+            <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>Please <Link to='/add' className='text-teal-800 mx-3 text-bold'> Click here </Link>to add a product.</h1> :
             <Table striped bordered hover className='w-100 h-1/2'>
                 <thead>
                     <tr>

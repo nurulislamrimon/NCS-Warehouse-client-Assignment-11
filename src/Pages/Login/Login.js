@@ -23,7 +23,9 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)
-    if (user || fbuser) { navigate(from) }
+    if (user || fbuser) {
+        navigate(from, { replace: true })
+    }
     return (
         <section className='md:w-1/2 mx-auto px-2 my-5'>
             <h1 className='text-4xl text-center my-4 '>Log in</h1>
