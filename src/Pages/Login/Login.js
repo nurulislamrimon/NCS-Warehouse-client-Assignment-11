@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 import auth from '../../firebase.init'
 
 const Login = () => {
+
+    const [showError, setShowError] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
     const [check, setCheck] = useState(false);
@@ -16,11 +18,15 @@ const Login = () => {
     const [signInWithFacebook, fbuser, fbloading, fberror] = useSignInWithFacebook(auth);
     const from = location?.state?.from?.path || '/';
 
+
+    console.log(showError);
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password);
+        setShowError("Please Enter a valid credential!");
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)
     if (user || fbuser) {
@@ -56,6 +62,7 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" onChange={() => setCheck(!check)} />
                     </Form.Group>
+                    {(showError || error || fberror) && <p className='text-red-600 text-center fw-bold'>{showError || error || fberror}</p>}
                     <Button variant='dark' type="submit" className='bg-teal-800' disabled={!check}>
                         Submit
                     </Button>
