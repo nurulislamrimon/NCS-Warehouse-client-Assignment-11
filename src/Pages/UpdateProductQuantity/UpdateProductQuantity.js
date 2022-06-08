@@ -16,7 +16,7 @@ const UpdateProductQuantity = () => {
     }
 
     const handleDeliveredItem = () => {
-        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
+        fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(inventory)
@@ -32,7 +32,7 @@ const UpdateProductQuantity = () => {
         const newQuantity = parseInt(quantity) + parseInt(newAdded);
         const newData = { quantity: newQuantity, ...rest };
 
-        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
+        fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newData)

@@ -14,7 +14,7 @@ const ManageInventory = () => {
     // const handleDeleteProduct = (id) => {
     //     const confirmation = window.confirm('Are you sure want to delete this product?');
     //     if (confirmation) {
-    //         fetch(`https://nameless-hamlet-70998.herokuapp.com/manage/${id}`, {
+    //         fetch(`http://localhost:5000/manage/${id}`, {
     //             method: 'DELETE'
     //         })
     //             .then(res => res.json())

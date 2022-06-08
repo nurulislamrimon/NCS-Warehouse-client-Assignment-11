@@ -18,7 +18,7 @@ const AddProduct = () => {
         const sold = 0;
         const newProduct = { name, price, quantity, supplier, picture, description, email, sold }
 
-        fetch('https://nameless-hamlet-70998.herokuapp.com/add', {
+        fetch('http://localhost:5000/add', {
             method: 'POST',
             headers: { "content-type": "application/json" },
             body: JSON.stringify(newProduct)

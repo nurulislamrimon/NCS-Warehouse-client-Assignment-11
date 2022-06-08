@@ -11,7 +11,7 @@ const MyItems = () => {
     const [user] = useAuthState(auth);
 
     useEffect(() => {
-        fetch(`https://nameless-hamlet-70998.herokuapp.com/myitems?email=${user?.email}`)
+        fetch(`http://localhost:5000/myitems?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setinventories(data))
     }, [user])
@@ -19,7 +19,7 @@ const MyItems = () => {
     const handleDeleteProduct = (id) => {
         const confirmation = window.confirm('Are you sure want to delete this product?');
         if (confirmation) {
-            fetch(`https://nameless-hamlet-70998.herokuapp.com/manage/${id}`, {
+            fetch(`http://localhost:5000/manage/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

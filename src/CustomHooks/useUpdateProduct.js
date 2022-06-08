@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const useUpdateProduct = () => {
     const [updateInfo, setUpdateInfo] = useState({});
     const handleUpdateProduct = (id, newInfo) => {
-        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
+        fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(newInfo)

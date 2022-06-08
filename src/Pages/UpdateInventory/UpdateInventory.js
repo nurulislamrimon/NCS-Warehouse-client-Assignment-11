@@ -10,7 +10,7 @@ const UpdateInventory = () => {
 
     const handleFormSubmit = (e) => {
         e.preventDefault();
-        fetch(`https://nameless-hamlet-70998.herokuapp.com/inventory/${id}`, {
+        fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'put',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(inventory)
