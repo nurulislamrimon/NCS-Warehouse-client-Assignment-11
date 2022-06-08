@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Table } from 'react-bootstrap';
+import { Spinner, Table } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -36,7 +36,11 @@ const MyItems = () => {
 
     return (
         !inventories?.length > 0 ?
-            <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>Please <Link to='/add' className='text-teal-800 mx-3 text-bold'> Click here </Link>to add a product.</h1> :
+            <div className='flex vh-100 align-items-center justify-center'>
+                <Spinner animation="grow" variant="success" />
+                <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>Please <Link to='/add' className='text-teal-800 mx-3 text-bold'> Click here </Link>to add a product.</h1>
+            </div>
+            :
             <Table striped bordered hover className='w-100 h-1/2'>
                 <thead>
                     <tr>
