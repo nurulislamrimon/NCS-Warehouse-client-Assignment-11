@@ -31,6 +31,11 @@ const Header = () => {
                                 Blogs
                             </CustomLink>
 
+                            <CustomLink to='/inventory' className='my-2 mx-3 d-block'>
+                                Inventory
+                            </CustomLink>
+
+
                             {user?.uid &&
                                 <CustomLink to='/manage' className='my-2 mx-3 d-block'>
                                     Manage items

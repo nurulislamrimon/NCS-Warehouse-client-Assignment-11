@@ -50,8 +50,8 @@ const UpdateProductQuantity = () => {
         <section className='mb-2 w-3/4 md:w-2/4 mx-auto'>
             <h1 className='text-2xl md:text-4xl text-center underline'>Update the product</h1>
             <h2 className='text-center text-lg md:text-2xl my-2 fw-bold text-teal-800'>{inventory.name}</h2>
-            <div className="grid md:grid-cols-2 align-items-center">
-                <img src={inventory.picture} alt="Product" className='md:order-2' />
+            <div className="grid md:grid-cols-2 align-items-center justify-center">
+                <img src={inventory.picture} alt="Product" className='md:order-2 object-cover w-60 h-52' />
                 <div className="info">
                     <p>Id: {inventory._id}</p>
                     <h3 className='md:text-lg'>Price: <b>{inventory.price}<span className='text-2xl'>৳</span></b></h3>
@@ -64,7 +64,7 @@ const UpdateProductQuantity = () => {
                 <Form onSubmit={handleProductInsertion} >
                     <Form.Group className="my-3" controlId="quantity">
                         <Form.Label>Enter quatity to add:</Form.Label>
-                        <Form.Control type="text" name='quantity' placeholder='Enter a valid number' required />
+                        <Form.Control type="number" name='quantity' placeholder='Enter a valid number' required />
                     </Form.Group>
                     <Button type='submit' className='bg-teal-800 flex'>Add Items <span className='material-icons ms-2'>add_shopping_cart
                     </span></Button>

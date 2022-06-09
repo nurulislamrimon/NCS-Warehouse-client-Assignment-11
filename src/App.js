@@ -16,6 +16,7 @@ import Signup from './Pages/Signup/Signup';
 import EmailVerification from './Pages/EmailVerification/EmailVerification';
 import RequireAuth from './Utilities/RequireAuth/RequireAuth';
 import MyItems from './Pages/MyItems/MyItems';
+import Inventory from './Pages/Inventory/Inventory';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route path='/blogs' element={<Blogs />} />
+        <Route path='/inventory' element={<Inventory />} />
         <Route path='/myitems' element={
           <RequireAuth>
             <MyItems />
@@ -52,11 +54,11 @@ function App() {
             <UpdateProductQuantity />
           </RequireAuth>
         } />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
         <Route path='/verifyemail' element={
           <EmailVerification />
         } />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/*' element={<NotFound />} />
       </Routes>
 

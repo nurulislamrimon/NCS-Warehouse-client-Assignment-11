@@ -8,7 +8,7 @@ const TopSoldProducts = () => {
     return (
         <section className="topSoldProduct grid md:grid-cols-4 lg:grid-cols-5 gap-4 p-3">
             {inventories.map(topSoldProduct =>
-                <Card key={topSoldProduct._id}>
+                <Card key={topSoldProduct._id} className='hover:drop-shadow-[2px_2px_5px_teal]'>
                     <Card.Img variant="top" src={topSoldProduct?.picture} className='object-cover h-52' />
                     <Card.Body>
                         <p className='text-lg md:text-lgcapitalize'>Product: <span className='fw-bold'>{topSoldProduct?.name}</span></p>
@@ -18,9 +18,9 @@ const TopSoldProducts = () => {
 
                         <Card.Text>
                             <u>Description:</u> <ReactReadMoreReadLess
-                                charLimit={80}
-                                readMoreText={"Read More▼"}
-                                readLessText={"Read Less▲"}  >
+                                charLimit={40}
+                                readMoreText={"Read More ▼"}
+                                readLessText={"Read Less ▲"}  >
                                 {topSoldProduct.description}
                             </ReactReadMoreReadLess>
                         </Card.Text>

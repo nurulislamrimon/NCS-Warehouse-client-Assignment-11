@@ -18,14 +18,18 @@ const Login = () => {
     const [signInWithFacebook, fbuser, fbloading, fberror] = useSignInWithFacebook(auth);
     const from = location?.state?.from?.path || '/';
 
-
-    console.log(showError);
-
     const handleFormSubmit = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password);
+        fetch('http://localhost:5000/login', {
+            method: 'post',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => localStorage.setItem("accessToken", data?.token))
         setShowError("Please Enter a valid credential!");
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)

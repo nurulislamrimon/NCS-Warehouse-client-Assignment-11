@@ -51,7 +51,7 @@ const Home = () => {
                 </div>
                 <section className="inventory p-3">
                     {inventories.map(inventory =>
-                        <Card key={inventory?._id}>
+                        <Card key={inventory?._id} className='relative pb-8 hover:drop-shadow-[2px_2px_5px_teal]'>
                             <Card.Img variant="top" src={inventory?.picture} className='object-cover h-52' />
                             <Card.Body>
                                 <p className=' text-lg md:text-2xl capitalize'>Product: <span className='fw-bold'>{inventory?.name}</span></p>
@@ -62,16 +62,19 @@ const Home = () => {
                                 <Card.Text>
                                     <u>Description</u>: {inventory?.description?.length > 80 ? inventory.description.slice(0, 80).concat('...') : inventory?.description}
                                 </Card.Text>
-                                <Link to={`/inventory/${inventory?._id}`} className='btn bg-teal-800 text-white hover:bg-teal-700 mt-2'>Update this item</Link>
+                                <Link to={`/inventory/${inventory?._id}`} className='btn bg-teal-800 text-white absolute bottom-2 hover:bg-teal-700 mt-2'>Update this item</Link>
                             </Card.Body>
                         </Card>)}
                 </section>
+                <p className='text-teal-800 fw-bold flex justify-center my-3'>
+                    <Link to='/inventory' className='flex'>See all inventory <span className='material-icons'>arrow_forward</span></Link>
+                </p>
 
                 {/* Upcoming Products */}
                 <h1 className='text-center text-2xl font-bold md:text-4xl my-4 underline'>*Upcoming Products*</h1>
                 <section className="upcoming grid md:grid-cols-2 gap-4 p-3">
                     {banners.map(upcoming =>
-                        <Card key={upcoming._id}>
+                        <Card key={upcoming._id} className='hover:drop-shadow-[2px_2px_5px_teal]'>
                             <Card.Img variant="top" src={upcoming?.picture} className='object-cover h-52' />
                             <Card.Body>
                                 <p className='text-lg md:text-2xl capitalize'>Product: <span className='fw-bold'>{upcoming?.name}</span></p>
@@ -92,7 +95,7 @@ const Home = () => {
 
                 {/* Most Sold items */}
                 <h1 className='text-center my-4 underline text-2xl font-bold md:text-4xl'>Top selling</h1>
-                <TopSoldProducts></TopSoldProducts>
+                <TopSoldProducts />
 
 
             </div >

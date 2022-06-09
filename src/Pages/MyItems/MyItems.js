@@ -4,21 +4,30 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import auth from '../../firebase.init';
+import Confirmation from '../../Utilities/Confirmation/Confirmation';
 
 const MyItems = () => {
     const [inventories, setinventories] = useState([]);
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
+    // const [confirmation, setConfirmation] = useState({});
+
+
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myitems?email=${user?.email}`)
+        fetch(`http://localhost:5000/myitems?email=${user?.email}`, {
+            headers: { 'accessToken': localStorage.getItem('accessToken') }
+        })
             .then(res => res.json())
             .then(data => setinventories(data))
-    }, [user])
+    }, [user?.email])
 
     const handleDeleteProduct = (id) => {
-        const confirmation = window.confirm('Are you sure want to delete this product?');
-        if (confirmation) {
+        // console.log(confirmation);
+        // for custom confirmation dialog
+        // <Confirmation />
+        const confirmationD = window.confirm('Are you sure want to delete this product?');
+        if (confirmationD) {
             fetch(`http://localhost:5000/manage/${id}`, {
                 method: 'DELETE'
             })
@@ -54,7 +63,7 @@ const MyItems = () => {
                 <tbody>
                     {inventories.map(inventory =>
                         <tr key={inventory?._id}>
-                            <td className='text-sm md:text-xl'>{inventories.indexOf(inventory) + 1}</td>
+                            <td className='text-sm md:text-xl'>{inventories?.indexOf(inventory) + 1}</td>
                             <td className='text-sm md:text-xl'>{inventory?.name}</td>
                             <td className='text-sm md:text-xl'>{inventory?.price}<span className='text-3xl'>৳</span></td>
                             <td className='text-sm md:text-xl'>{inventory.quantity}</td>
@@ -65,7 +74,7 @@ const MyItems = () => {
                                     <img src={inventory.picture} alt="" width='100' className='me-5 hidden md:block object-cover h-14' />
                                     <button onClick={() => navigate(`/update/${inventory?._id}`)}><span className='material-icons text-teal-800 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>edit</span></button>
 
-                                    <button onClick={() => handleDeleteProduct(inventory._id)}>
+                                    <button onClick={() => handleDeleteProduct(inventory?._id)}>
                                         <span className='material-icons text-red-900 cursor-pointer border-2 md:p-2 rounded-circle hover:bg-gray-300'>delete</span>
                                     </button>
                                 </div>
