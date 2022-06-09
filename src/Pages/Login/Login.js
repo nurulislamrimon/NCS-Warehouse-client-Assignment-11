@@ -26,10 +26,10 @@ const Login = () => {
         fetch('http://localhost:5000/login', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ email })
+            body: JSON.stringify({ email: email })
         })
             .then(res => res.json())
-            .then(data => localStorage.setItem("accessToken", data?.token))
+            .then(data => localStorage.setItem("accessToken", data?.accessToken))
         setShowError("Please Enter a valid credential!");
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)

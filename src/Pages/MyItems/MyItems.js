@@ -10,18 +10,28 @@ const MyItems = () => {
     const [inventories, setinventories] = useState([]);
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
+    const [err, setErr] = useState('');
     // const [confirmation, setConfirmation] = useState({});
 
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/myitems?email=${user?.email}`, {
-            headers: { 'accessToken': localStorage.getItem('accessToken') }
-        })
-            .then(res => res.json())
-            .then(data => setinventories(data))
+        try {
+            fetch(`http://localhost:5000/myitems?email=${user?.email}`, {
+                headers: { 'token': localStorage.getItem('accessToken') }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data?.message) {
+                        setErr(data.message);
+                    } else {
+                        setinventories(data)
+                    }
+                })
+        } catch (error) {
+            console.log(error);
+        }
     }, [user?.email])
-
     const handleDeleteProduct = (id) => {
         // console.log(confirmation);
         // for custom confirmation dialog
@@ -45,9 +55,13 @@ const MyItems = () => {
 
     return (
         !inventories?.length > 0 ?
-            <div className='flex vh-100 align-items-center justify-center'>
-                <Spinner animation="grow" variant="success" />
-                <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>Please <Link to='/add' className='text-teal-800 mx-3 text-bold'> Click here </Link>to add a product.</h1>
+            <div className='flex flex-column vh-100 align-items-center'>
+                {/* error message */}
+                {err && <p className='text-red-600 block text-5xl'>{err}</p>}
+                <div className='flex align-items-center justify-center'>
+                    <Spinner animation="grow" variant="success" />
+                    <h1 className='text-xl md:text-5xl vh-100 flex align-items-center justify-center'>Please <Link to='/add' className='text-teal-800 mx-3 text-bold'> Click here </Link>to add a product.</h1>
+                </div>
             </div>
             :
             <Table striped bordered hover className='w-100 h-1/2'>
