@@ -23,19 +23,21 @@ const Login = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
         signInWithEmailAndPassword(email, password);
+        setShowError("Please Enter a valid credential!");
+    }
+    if (user || fbuser) {
+        console.log(user?.user?.email);
+        console.log(fbuser?.user?.email);
         fetch('http://localhost:5000/login', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ email: email })
+            body: JSON.stringify({ email: user?.user?.email || fbuser?.user?.email })
         })
             .then(res => res.json())
             .then(data => localStorage.setItem("accessToken", data?.accessToken))
-        setShowError("Please Enter a valid credential!");
-    }
-    sending && toast(`Reset link sended to ${resetEmail.current.value}`)
-    if (user || fbuser) {
         navigate(from, { replace: true })
     }
+    sending && toast(`Reset link sended to ${resetEmail.current.value}`)
     if (loading || fbloading) {
         return <div className='flex vh-100 align-items-center justify-center'>
             <Spinner animation="grow" variant="success" />

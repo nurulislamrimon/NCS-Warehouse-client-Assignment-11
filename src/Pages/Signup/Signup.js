@@ -27,7 +27,18 @@ const Signup = () => {
         await sendEmailVerification(email);
         await updateProfile({ displayName: name })
     }
-    if (user || fbuser) { navigate('/') }
+    if (user || fbuser) {
+        console.log(user?.user?.email);
+        console.log(fbuser?.user?.email);
+        fetch('http://localhost:5000/login', {
+            method: 'post',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ email: user?.user?.email || fbuser?.user?.email })
+        })
+            .then(res => res.json())
+            .then(data => localStorage.setItem("accessToken", data?.accessToken))
+        navigate('/')
+    }
     if (loading || fbloading) {
         return <div className='flex vh-100 align-items-center justify-center'>
             <Spinner animation="grow" variant="success" />
