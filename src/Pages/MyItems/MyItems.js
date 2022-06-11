@@ -17,7 +17,7 @@ const MyItems = () => {
 
     useEffect(() => {
         try {
-            fetch(`http://localhost:5000/myitems?email=${user?.email}`, {
+            fetch(`https://nameless-hamlet-70998.herokuapp.com/myitems?email=${user?.email}`, {
                 headers: { 'token': localStorage.getItem('accessToken') }
             })
                 .then(res => res.json())
@@ -38,7 +38,7 @@ const MyItems = () => {
         // <Confirmation />
         const confirmationD = window.confirm('Are you sure want to delete this product?');
         if (confirmationD) {
-            fetch(`http://localhost:5000/manage/${id}`, {
+            fetch(`https://nameless-hamlet-70998.herokuapp.com/manage/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

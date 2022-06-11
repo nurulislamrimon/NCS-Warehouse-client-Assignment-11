@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 const useDeleteProduct = () => {
     const [remainingInventory, setRemainingInventory] = useState({})
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/manage/${id}`, {
+        fetch(`https://nameless-hamlet-70998.herokuapp.com/manage/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

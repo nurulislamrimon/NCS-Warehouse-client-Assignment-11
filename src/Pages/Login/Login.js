@@ -28,7 +28,7 @@ const Login = () => {
     if (user || fbuser) {
         console.log(user?.user?.email);
         console.log(fbuser?.user?.email);
-        fetch('http://localhost:5000/login', {
+        fetch('https://nameless-hamlet-70998.herokuapp.com/login', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: user?.user?.email || fbuser?.user?.email })
