@@ -20,7 +20,6 @@ import Inventory from './Pages/Inventory/Inventory';
 
 
 function App() {
-  console.log(process.env.REACT_APP_apiKey);
   return (
     <div className="App relative">
       <Header />
