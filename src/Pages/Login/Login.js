@@ -1,10 +1,11 @@
 import { async } from '@firebase/util';
 import React, { useRef, useState } from 'react';
 import { Button, Form, Spinner } from 'react-bootstrap';
-import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import auth from '../../firebase.init'
+import auth from '../../firebase.init';
+import google from '../../icon/google.png';
 
 const Login = () => {
 
@@ -16,6 +17,7 @@ const Login = () => {
     const [signInWithEmailAndPassword, user, loading] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error] = useSendPasswordResetEmail(auth);
     const [signInWithFacebook, fbuser, fbloading, fberror] = useSignInWithFacebook(auth);
+    const [signInWithGoogle, googleuser, googleloading, googleerror] = useSignInWithGoogle(auth);
     const from = location?.state?.from?.path || '/';
 
     const handleFormSubmit = (e) => {
@@ -25,20 +27,18 @@ const Login = () => {
         signInWithEmailAndPassword(email, password);
         setShowError("Please Enter a valid credential!");
     }
-    if (user || fbuser) {
-        console.log(user?.user?.email);
-        console.log(fbuser?.user?.email);
+    if (user || fbuser || googleuser) {
         fetch('https://nameless-hamlet-70998.herokuapp.com/login', {
             method: 'post',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ email: user?.user?.email || fbuser?.user?.email })
+            body: JSON.stringify({ email: user?.user?.email || fbuser?.user?.email || googleuser?.user?.email })
         })
             .then(res => res.json())
             .then(data => localStorage.setItem("accessToken", data?.accessToken))
         navigate(from, { replace: true })
     }
     sending && toast(`Reset link sended to ${resetEmail.current.value}`)
-    if (loading || fbloading) {
+    if (loading || fbloading || googleloading) {
         return <div className='flex vh-100 align-items-center justify-center'>
             <Spinner animation="grow" variant="success" />
         </div>
@@ -47,7 +47,11 @@ const Login = () => {
             <section className='md:w-1/2 mx-auto px-2 my-5'>
                 <h1 className='text-4xl text-center my-4 '>Log in</h1>
 
-                <button onClick={() => signInWithFacebook()} className='btn mx-auto bg-blue-600 text-white flex'> <span className='material-icons me-2'>facebook</span>Login with Facebook</button>
+                <div className="w-3/4 mx-auto lg:flex justify-evenly">
+                    <button onClick={() => signInWithFacebook()} className='btn m-2 bg-blue-600 text-white flex'> <span className='material-icons me-2'>facebook</span>Login with Facebook</button>
+                    <button onClick={() => signInWithGoogle()} className='btn m-2 flex items-center border shadow-sm'>
+                        <img src={google} height='20' width='20' alt="" className='me-2' /> Login with Google</button>
+                </div>
 
                 <div className="flex align-items-center">
                     <hr className='w-50 me-2' />
@@ -68,7 +72,7 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" onChange={() => setCheck(!check)} />
                     </Form.Group>
-                    {(showError || error || fberror) && <p className='text-red-600 text-center fw-bold'>{showError || error || fberror}</p>}
+                    {(showError || error || fberror || googleerror) && <p className='text-red-600 text-center fw-bold'>{showError || error || fberror || googleerror}</p>}
                     <Button variant='dark' type="submit" className='bg-teal-800' disabled={!check}>
                         Submit
                     </Button>
