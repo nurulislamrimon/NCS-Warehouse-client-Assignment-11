@@ -12,3 +12,8 @@ This site is made for managing an warehouse. Home page is open to know about pro
 <li>You could update a product info (all information) by cliking on 'manage inventory'.
 <li>You can add a product on the 'add product' page, deleting your product also possible.
 <li>We ensure you that, you are safe from tracking your products.
+
+
+
+
+# server code link: https://github.com/nurulislamrimon/warehouse-server-Assignment-11
